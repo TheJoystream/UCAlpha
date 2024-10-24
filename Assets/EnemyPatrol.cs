@@ -23,6 +23,7 @@ public class EnemyPatrol : MonoBehaviour
 
         }
         transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, speed * Time.deltaTime);
+        transform.LookAt(patrolPoints[targetPoint].position);
     }
 
     void increaseTargetInt()
