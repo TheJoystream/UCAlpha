@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
 
+    public bool isMoving = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +25,14 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
         verticalInput = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
-        if (transform.position.x < -98)
-        {
-            transform.position = new Vector3(-98, transform.position.y, transform.position.z);
+       
+        if(Input.anyKeyDown)
+                {
+            isMoving = true;
+        }
 
+        if (Input.GetKey(KeyCode.LeftShift) & isMoving == true) {
+            transform.position += transform.forward * Time.deltaTime * speed;
         }
 
     }

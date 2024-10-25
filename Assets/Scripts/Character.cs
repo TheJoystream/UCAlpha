@@ -6,7 +6,9 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     private CharacterController characterController;
+    public bool isMoving = false;
     public float speed = 20f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +21,15 @@ public class Character : MonoBehaviour
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         characterController.Move(move * Time.deltaTime * speed);
+
+        if(Input.anyKeyDown)
+        {
+            isMoving = true;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) & isMoving == true)
+        {
+            characterController.Move(move * Time.deltaTime * speed * 2);
+        }
     }
 }
