@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rock : MonoBehaviour
+public class Key : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -10,7 +10,7 @@ public class Rock : MonoBehaviour
 
         if (playerInventory != null)
         {
-            playerInventory.RockCollected();
+            playerInventory.KeyCollected();
             gameObject.SetActive(false);
         }
     }
