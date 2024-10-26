@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7528807482439151844}
   - component: {fileID: -2666716406483284703}
   - component: {fileID: -2843440821548933379}
+  - component: {fileID: 8746879902525609718}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -134,7 +135,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &7528807482439151844
 MonoBehaviour:
@@ -154,7 +155,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   targetPoint: 0
-  speed: 0
+  speed: 15
 --- !u!114 &-2666716406483284703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,15 +168,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15670882f7fa8dc4a858b34e1fe37e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  angle: 0
+  radius: 25
+  angle: 100
   playerRef: {fileID: 0}
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   canSeePlayer: 0
 --- !u!114 &-2843440821548933379
 MonoBehaviour:
@@ -189,3 +190,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a189e5be5457aa7498b41aca6d1dd194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerAwarenessDistance: 5
+--- !u!114 &8746879902525609718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4541475457594801472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d392cf7a117cff647a95e3eefc8f3aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 1
+  _rotationSpeed: 100

@@ -839,6 +839,7 @@ MonoBehaviour:
   speed: 20
   horizontalInput: 0
   verticalInput: 0
+  isMoving: 0
 --- !u!1 &272275785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1470,6 +1471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cd040ea429c1f47baecb78ba8fe4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
   speed: 20
 --- !u!143 &561206839
 CharacterController:
@@ -3516,26 +3518,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -2666716406483284703, guid: defd00458c231994bbe2bacfede6020b, type: 3}
-      propertyPath: angle
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: -2666716406483284703, guid: defd00458c231994bbe2bacfede6020b, type: 3}
-      propertyPath: radius
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: -2666716406483284703, guid: defd00458c231994bbe2bacfede6020b, type: 3}
-      propertyPath: targetMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: -2666716406483284703, guid: defd00458c231994bbe2bacfede6020b, type: 3}
-      propertyPath: obstructionMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: -2302953410541733433, guid: defd00458c231994bbe2bacfede6020b, type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
     - target: {fileID: 52964857170010981, guid: defd00458c231994bbe2bacfede6020b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 132.1
@@ -3581,10 +3563,6 @@ PrefabInstance:
       value: Cow (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7528807482439151844, guid: defd00458c231994bbe2bacfede6020b, type: 3}
-      propertyPath: speed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7528807482439151844, guid: defd00458c231994bbe2bacfede6020b, type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1121158558}
@@ -3600,6 +3578,14 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[3]
       value: 
       objectReference: {fileID: 873966288}
+    - target: {fileID: 8746879902525609718, guid: defd00458c231994bbe2bacfede6020b, type: 3}
+      propertyPath: _speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746879902525609718, guid: defd00458c231994bbe2bacfede6020b, type: 3}
+      propertyPath: _rotationSpeed
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
