@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerAwareness : MonoBehaviour
 {
+    private CharacterController characterController;
     public bool AwareOfPlayer { get; private set; }
 
     public Vector3 DirectionToPlayer {  get; private set; }
