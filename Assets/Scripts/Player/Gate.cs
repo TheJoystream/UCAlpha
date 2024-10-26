@@ -23,20 +23,19 @@ public class Gate : MonoBehaviour
     void Update()
     {
         //If keys collected are less than zero, display message "You need the key"
-        FindObjectsByType()
+        
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        playerInventory inventory = GetComponent<playerInventory>();
-        if (inventory.NumberOfKeys == 0)
+        playerInventory inventory = other.GetComponent<playerInventory>();
+         if (inventory.NumberOfKeys == 0)
         {
-    
-            Debug.Log("You need to find the key!");
+            Debug.Log("You need the key!");
         }
-        else
+               if (inventory.NumberOfKeys >= 0)
         {
-            Debug.Log("You have escaped!");
+            Debug.Log("You escaped!");
         }
     }
 }
