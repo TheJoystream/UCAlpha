@@ -11,7 +11,8 @@ public class Key : MonoBehaviour
         if (playerInventory != null)
         {
             playerInventory.KeyCollected();
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
