@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     private CharacterController characterController;
     public bool isMoving = false;
     public float speed = 20f;
+    public bool isHiding;
 
     // Start is called before the first frame update
     void Start()
@@ -33,4 +34,11 @@ public class Character : MonoBehaviour
             characterController.Move(move * Time.deltaTime * speed * 2);
         }
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        GameObject.FindGameObjectsWithTag("Obstruction");
+
+    }
+
 }

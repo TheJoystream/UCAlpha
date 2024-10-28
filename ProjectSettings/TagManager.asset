@@ -6,6 +6,7 @@ TagManager:
   tags:
   - endkey
   - Gate
+  - Obstruction
   layers:
   - Default
   - TransparentFX
