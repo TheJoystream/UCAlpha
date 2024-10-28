@@ -17,11 +17,16 @@ public class GateOpen : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("endkey"))
         {
             locked = false;
+
+            
         }
+        
+        
+        
     }
 }
