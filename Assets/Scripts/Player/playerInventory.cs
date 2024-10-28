@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class playerInventory : MonoBehaviour
 {
+    public bool hasKey;
+    public float hasKeys;
     public int keysAmount;
     public int NumberOfRocks { get; private set; }
     public int NumberOfKeys { get; private set; }
@@ -15,7 +17,7 @@ public class playerInventory : MonoBehaviour
 
     private void Start()
     {
-        keysAmount = 0;
+        
     }
 
     public void RockCollected()
@@ -28,10 +30,27 @@ public class playerInventory : MonoBehaviour
     public void KeyCollected()
     {
 
-    NumberOfKeys++;
+        keysAmount++;
         OnKeyCollected.Invoke(this);
-        keysAmount += 1;
+    }
+    public void Update()
+    {
+
+   
     }
 
-
+    public void OnTriggerEnter(Collider other)
+    {
+        if(NumberOfKeys >= 0)
+        {
+            hasKey = true;
+            
+        }
+        
+    }
+    
 }
+     
+
+
+

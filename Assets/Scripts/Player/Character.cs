@@ -26,6 +26,7 @@ public class Character : MonoBehaviour
         {
             isMoving = true;
         }
+     
 
         if (Input.GetKey(KeyCode.LeftShift) & isMoving == true)
         {

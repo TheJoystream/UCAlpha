@@ -22,7 +22,7 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateKeyText(playerInventory playerInventory)
     {
-        keyText.text = playerInventory.NumberOfKeys.ToString();
+        keyText.text = playerInventory.keysAmount.ToString();
     }
 
 }
