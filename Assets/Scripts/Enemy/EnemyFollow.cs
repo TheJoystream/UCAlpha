@@ -7,15 +7,20 @@ using UnityEngine.UI;
 
 public class EnemyFollow : MonoBehaviour
 {
+    //Chase AI
     public NavMeshAgent enemy;
     public Transform Player;
     public float radius;
+
+    //Waypoints
     public Transform[] patrolPoints;
     public int targetPoint;
     public float speed;
    
 
-    
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +32,7 @@ public class EnemyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         enemy.SetDestination(Player.position);
     
     
