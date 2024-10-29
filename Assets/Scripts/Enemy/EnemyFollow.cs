@@ -34,9 +34,9 @@ public class EnemyFollow : MonoBehaviour
     {
         
         enemy.SetDestination(Player.position);
-    
-    
-       if (transform.position == patrolPoints[targetPoint].position)
+
+
+        if (transform.position == patrolPoints[targetPoint].position)
         {
             increaseTargetInt();
 

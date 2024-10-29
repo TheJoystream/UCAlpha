@@ -8,7 +8,7 @@ public class playerInventory : MonoBehaviour
 {
     public bool hasKey;
     public float hasKeys;
-    public int keysAmount;
+    public int keysAmount { get; private set; }
     public int NumberOfRocks { get; private set; }
     public int NumberOfKeys { get; private set; }
 
