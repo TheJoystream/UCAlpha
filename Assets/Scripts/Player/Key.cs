@@ -13,9 +13,9 @@ public class Key : MonoBehaviour
          if (playerInventory != null)
          {
              playerInventory.KeyCollected();
-             //gameObject.SetActive(false);
+             gameObject.SetActive(false);
              Destroy(gameObject);
-             gate.GetComponent<BoxCollider>().enabled = false;
+            gate.GetComponent<BoxCollider>().enabled = false;
          }
          
         if (other.gameObject.CompareTag("endkey"))
