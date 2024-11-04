@@ -16,6 +16,7 @@ public class GameOver : MonoBehaviour
         
     }
 
+    //Ends the game when player reaches certain point
     private void OnTriggerEnter(Collider other)
     {
         Destroy(other.gameObject);
