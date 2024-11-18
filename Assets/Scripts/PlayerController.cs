@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float verticalInput;
 
     public bool isMoving = false;
+
+    public bool isHidden = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,4 +39,10 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    public void Hidden()
+    {
+        //OnCollisionEnter
+    }
+
 }

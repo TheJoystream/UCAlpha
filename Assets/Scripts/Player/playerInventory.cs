@@ -12,12 +12,14 @@ public class playerInventory : MonoBehaviour
     public int NumberOfRocks { get; private set; }
     public int NumberOfKeys { get; private set; }
 
+   // public AudioSource keyAudio;
+
     public UnityEvent<playerInventory> OnRockCollected;
     public UnityEvent<playerInventory> OnKeyCollected;
 
     private void Start()
     {
-        
+        //keyAudio = GetComponent<AudioSource>();
     }
 
     public void RockCollected()
@@ -29,8 +31,10 @@ public class playerInventory : MonoBehaviour
 
     public void KeyCollected()
     {
+       // keyAudio.PlayOneShot(keyAudio.clip);
 
         keysAmount++;
+        
         OnKeyCollected.Invoke(this);
     }
     public void Update()
@@ -45,6 +49,7 @@ public class playerInventory : MonoBehaviour
         {
             hasKey = true;
             
+
         }
         
     }

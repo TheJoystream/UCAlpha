@@ -5,14 +5,23 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    private Rigidbody playerRb;
     private CharacterController characterController;
     public bool isMoving = false;
     public float speed = 20f;
     public bool isHiding;
 
+    //Audio
+    public AudioClip keyCollect;
+    public AudioClip rockCollect;
+
+  
+
     // Start is called before the first frame update
     void Start()
     {
+        playerRb = GetComponent<Rigidbody>();
+
         characterController = GetComponent<CharacterController>();
     }
 
@@ -33,12 +42,19 @@ public class Character : MonoBehaviour
         {
             characterController.Move(move * Time.deltaTime * speed * 2);
         }
+        
+        Hiding();
     }
 
     public void OnTriggerEnter(Collider other)
     {
         GameObject.FindGameObjectsWithTag("Obstruction");
 
+    }
+
+    public void Hiding()
+    {
+        
     }
 
 }

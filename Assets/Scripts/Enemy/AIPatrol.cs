@@ -9,7 +9,7 @@ public class AIPatrol : MonoBehaviour
     GameObject player;
     NavMeshAgent agent;
 
-    [SerializeField] LayerMask targetLayer, groundLayer;
+    [SerializeField] LayerMask targetLayer, groundLayer, obstructionLayer;
 
     //Patrol
     Vector3 destPoint;
@@ -19,35 +19,70 @@ public class AIPatrol : MonoBehaviour
     //State change
     [SerializeField] float sightRange;
     bool playerInSight;
+    [SerializeField] private Transform playerpos;
+    public Transform[] waypoints;
+    int currentWayPointIndex;
+    
+    
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+       // agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player");
+        Patrol();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         playerInSight = Physics.CheckSphere(transform.position, sightRange, targetLayer);
-        if(!playerInSight) Patrol();
-        Chase();
+
+        /*if (playerInSight)
+        {
+            Chase();
+        }*/
+
+        if (Vector3.Distance(transform.position, destPoint) < 1)
+        {
+            IterateWaypointIndex();
+            Patrol();
+        }
+        
     }
 
     void Chase()
     {
-        agent.SetDestination(player.transform.position);
+       // agent.SetDestination(player.transform.position);
+       
+        if(playerInSight == true)
+        {
+            Vector3 direction = transform.forward;
+        }
     }
 
     void Patrol()
     {
-        if (!walkpointSet) SearchForDest();
-        if(walkpointSet) agent.SetDestination(destPoint);
-        if(Vector3.Distance(transform.position, destPoint) < range) walkpointSet = false;
+        //if (!walkpointSet) SearchForDest();
+        //if (walkpointSet) agent.SetDestination(destPoint);
+        //if(Vector3.Distance(transform.position, destPoint) < range) walkpointSet = false;
+        destPoint = waypoints[currentWayPointIndex].position;
+        agent.SetDestination(destPoint);
     }
-    void SearchForDest()
+
+    void IterateWaypointIndex()
+    {
+        currentWayPointIndex++;
+        if(currentWayPointIndex==waypoints.Length)
+        {
+            currentWayPointIndex = 0;
+        }
+    }
+    
+/*void SearchForDest()
     {
         float z = Random.Range(-range, range);
         float x = Random.Range(-range, range);
@@ -58,5 +93,8 @@ public class AIPatrol : MonoBehaviour
         {
             walkpointSet = true;
         }
-    }
+    }*/
+
+
+    
 }

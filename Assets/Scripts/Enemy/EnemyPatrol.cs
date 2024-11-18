@@ -31,4 +31,5 @@ public class EnemyPatrol : MonoBehaviour
         if(targetPoint >= patrolPoints.Length)
         { targetPoint = 0; }
     }
+
 }
