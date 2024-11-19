@@ -17,9 +17,13 @@ public class HidingSpot : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+   /* private void OnTriggerEnter(Collider other)
     {
-       // GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().enabled = false;
 
     }
+    private void OnTriggerExit(Collider other)
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Renderer>().enabled = true;
+    }*/
 }

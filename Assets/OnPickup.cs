@@ -5,11 +5,14 @@ using UnityEngine;
 public class OnPickup : MonoBehaviour
 {
 
-    private AudioSource audioSource;
+    public AudioSource audioSource;
+    public AudioClip keypickup;
     private GameObject targetGameObject;
+    public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         
     }
@@ -17,7 +20,13 @@ public class OnPickup : MonoBehaviour
     // Update is called once per frame
     private void OnCollisionEnter(Collision other)
     {
-        audioSource.Play();
+        if (other.collider.CompareTag("Player"))
+        {
+            audioSource.PlayOneShot(keypickup);
+        }
+       
     }
+
+    
 
 }

@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     public bool isHiding;
 
     //Audio
+    private AudioSource playerAudio;
     public AudioClip keyCollect;
     public AudioClip rockCollect;
 
@@ -20,6 +21,7 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAudio = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody>();
 
         characterController = GetComponent<CharacterController>();
@@ -48,7 +50,8 @@ public class Character : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        GameObject.FindGameObjectsWithTag("Obstruction");
+        
+        //GameObject.FindGameObjectsWithTag("Obstruction");
 
     }
 
@@ -57,4 +60,8 @@ public class Character : MonoBehaviour
         
     }
 
+    private void KeyPickup()
+    {
+        
+    }
 }

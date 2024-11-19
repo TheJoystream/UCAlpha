@@ -21,7 +21,7 @@ public class AIPatrol : MonoBehaviour
     bool playerInSight;
     [SerializeField] private Transform playerpos;
     public Transform[] waypoints;
-    int currentWayPointIndex;
+    public int currentWayPointIndex;
     
     
     
@@ -30,18 +30,19 @@ public class AIPatrol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player");
-        Patrol();
+        // Patrol();
+        UpdateDestination();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerInSight = Physics.CheckSphere(transform.position, sightRange, targetLayer);
+        /*playerInSight = Physics.CheckSphere(transform.position, sightRange, targetLayer);
 
-        /*if (playerInSight)
+        if (playerInSight)
         {
             Chase();
         }*/
@@ -49,37 +50,52 @@ public class AIPatrol : MonoBehaviour
         if (Vector3.Distance(transform.position, destPoint) < 1)
         {
             IterateWaypointIndex();
-            Patrol();
+            UpdateDestination();
+            //Patrol();
         }
         
     }
 
-    void Chase()
+   /* void Chase()
     {
-       // agent.SetDestination(player.transform.position);
+        agent.SetDestination(player.transform.position);
        
         if(playerInSight == true)
         {
-            Vector3 direction = transform.forward;
+            Vector3 direction = player.transform.position;
         }
-    }
-
-    void Patrol()
+    }*/
+   /* void Patrol()
     {
-        //if (!walkpointSet) SearchForDest();
-        //if (walkpointSet) agent.SetDestination(destPoint);
-        //if(Vector3.Distance(transform.position, destPoint) < range) walkpointSet = false;
-        destPoint = waypoints[currentWayPointIndex].position;
-        agent.SetDestination(destPoint);
-    }
+        if (!walkpointSet)
+        { SearchForDest(); }
+
+        if (walkpointSet)
+        {
+            agent.SetDestination(destPoint);
+        }
+
+        if (Vector3.Distance(transform.position, destPoint) < range)
+        {
+            walkpointSet = false;
+            destPoint = waypoints[currentWayPointIndex].position;
+            agent.SetDestination(destPoint);
+        }
+    }*/
 
     void IterateWaypointIndex()
     {
         currentWayPointIndex++;
-        if(currentWayPointIndex==waypoints.Length)
+        if(currentWayPointIndex== waypoints.Length)
         {
             currentWayPointIndex = 0;
         }
+    }
+
+    void UpdateDestination()
+    {
+        destPoint = waypoints[currentWayPointIndex].position;
+        agent.SetDestination(destPoint);
     }
     
 /*void SearchForDest()
