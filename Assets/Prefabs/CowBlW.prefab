@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 247205677681463610}
   - component: {fileID: 1247734250908921585}
   - component: {fileID: 5629109242154497520}
+  - component: {fileID: 7882906051658927691}
   m_Layer: 0
   m_Name: CowBlW
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,14 +122,14 @@ NavMeshAgent:
   m_Speed: 20
   m_Acceleration: 10
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 250
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 3.1636891
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!54 &1247734250908921585
 Rigidbody:
@@ -164,7 +165,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287295899898638}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14b2a0ac12e8eff4985f4d73bccdf4cd, type: 3}
   m_Name: 
@@ -178,3 +179,21 @@ MonoBehaviour:
   targetPoint: 0
   targetPointIndex: 0
   speed: 5
+--- !u!114 &7882906051658927691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287295899898638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9430ec20d460df44ebbfb005909eb558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

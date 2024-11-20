@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        isHidden = GetComponent<MeshRenderer>().enabled;
     }
 
     // Update is called once per frame
@@ -40,9 +40,27 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void Hidden()
+    /*public void Hidden()
     {
-        //OnCollisionEnter
+        OnCollisionEnter
+    }*/
+
+    private void OnCollisionEnter(Collision other)
+    {
+        GameObject.FindGameObjectsWithTag("Obstruction");
+        
+        {
+            isHidden = GetComponent<MeshRenderer>().enabled == false;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        GameObject.FindGameObjectsWithTag("Obstruction");
+
+        {
+            isHidden = GetComponent<MeshRenderer>().enabled == true;
+        }
     }
 
 }

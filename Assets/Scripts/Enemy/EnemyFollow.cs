@@ -31,7 +31,7 @@ public class EnemyFollow : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         targetPoint = 0;
-        Patrol();
+       // Patrol();
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class EnemyFollow : MonoBehaviour
         }
         if (playerInSight == false)
         {
-            Patrol();
+       //     Patrol();
         }
         
     
@@ -69,7 +69,7 @@ public class EnemyFollow : MonoBehaviour
     }
     
     
-     public void Patrol()
+    /* public void Patrol()
     {
         transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, speed * Time.deltaTime);
         transform.LookAt(patrolPoints[targetPoint].position);
@@ -88,5 +88,5 @@ public class EnemyFollow : MonoBehaviour
         {
             targetPointIndex = 0;
         }
-    }
+    }*/
 }

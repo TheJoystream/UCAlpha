@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FieldOfView : MonoBehaviour
 {
     GameObject player;
 
     public float radius;
-    [Range(0, 360)]
+    [Range(0, 40)]
     public float angle;
 
     public GameObject playerRef;
@@ -17,9 +18,11 @@ public class FieldOfView : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstructionMask;
 
-    public bool canSeePlayer;
-    private Transform target;
+    public bool canSeePlayer = false;
+    public Transform target;
 
+    public NavMeshAgent enemy;
+    public Transform playerpos;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,22 +66,25 @@ public class FieldOfView : MonoBehaviour
                     canSeePlayer = false;
 
             }
-            else
-                canSeePlayer = false;
+            if (canSeePlayer == true)
+                {
+                Chase();
+            }
         }
-        else if (canSeePlayer)
-        {
-            canSeePlayer = false;
-        }
-
     }
 
     public void Chase()
     {
-        if (canSeePlayer == true)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, 5f).normalized; transform.forward = target.forward;
-        }
+        enemy.SetDestination(playerpos.position);
+        //if (canSeePlayer == true)
+       // {
+            //transform.position = Vector3.MoveTowards(transform.position, target.position, 5f).normalized; transform.forward = target.forward;
+       // }
+
+        //if (canSeePlayer == false)
+        //{
+            //FieldOfViewCheck();
+       // }
     }
 
     private Vector3 GetPosition()
