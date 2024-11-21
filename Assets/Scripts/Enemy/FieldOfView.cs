@@ -9,7 +9,7 @@ public class FieldOfView : MonoBehaviour
     GameObject player;
 
     public float radius;
-    [Range(0, 40)]
+    [Range(0, 360)]
     public float angle;
 
     public GameObject playerRef;
