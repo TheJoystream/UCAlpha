@@ -10,17 +10,20 @@ public class Character : MonoBehaviour
     private Rigidbody playerRb;
     private CharacterController characterController;
     public bool isMoving;
-    public float speed = 6f;
-    private float sprintSpeed = 12f;
-    private float staminaDecreaseRate = 2f;
-    private float staminaIncreaseRate = 2f;
+    public bool isRunning = false;
+    public float movespeed = 6f;
     public bool isHiding;
-    public float stamina = 100f;
-    public float totalStamina = 100f;
-    public bool staminaDepleted;
-    //private Slider uiManager;
-    
-    
+
+    public float rechargeRate;
+    private Coroutine recharge;
+
+
+
+    public Image StaminaBar;
+    public float Stamina, MaxStamina;
+    public float SprintCost;
+
+
 
 
 
@@ -29,7 +32,7 @@ public class Character : MonoBehaviour
     public AudioClip keyCollect;
     public AudioClip rockCollect;
 
-  
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +41,8 @@ public class Character : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
 
         characterController = GetComponent<CharacterController>();
-       // slider = (Slider)GetComponent(typeof(Slider));
+
+        // slider = (Slider)GetComponent(typeof(Slider));
     }
 
     // Update is called once per frame
@@ -46,62 +50,85 @@ public class Character : MonoBehaviour
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        characterController.Move(move * Time.deltaTime * speed);
+        characterController.Move(move * Time.deltaTime * movespeed);
 
-        if (move.x == 0 && move.y == 0)
-            isMoving = false;
-        else
-        isMoving = true;
-     
+        if (Input.anyKeyDown)
+            isMoving = true;
 
-       // if (Input.GetKey(KeyCode.LeftShift) & isMoving == true)
-        {//
-           characterController.Move(move * Time.deltaTime);
-        }
-        
-        if (Input.GetKey(KeyCode.LeftShift) && staminaDepleted == false && isMoving == true)
+
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) & isMoving == true)
         {
-            if (totalStamina > 0f)
-            {
-                speed = sprintSpeed;
-                totalStamina -= staminaDecreaseRate * Time.deltaTime;
-            }
-            else
-            {
-                totalStamina = 0f;
-                staminaDepleted = true;
-            }
+            characterController.Move(move * Time.deltaTime * movespeed * 2);
+            isRunning = true;
+            Debug.Log("Sprinting");
         }
-        else
+        if (isRunning == true)
         {
-            speed = 6f;
-            if (stamina < totalStamina)
+            movespeed = 12.0f;
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift) & isMoving == true)
+        {
+            isRunning = false;
+        }
+        if (isRunning == false)
+        {
+            movespeed = 6.0f;
+        }
+        if(Stamina == 0)
+        {
+            movespeed = 6.0f;
+        }
+        {
+            // characterController.Move(move * Time.deltaTime * speed * 2);
+            if (isRunning == true)
             {
-                totalStamina += staminaIncreaseRate * Time.deltaTime;
-            }
-            else
-            {
-                totalStamina = 0;
-                staminaDepleted = true;
+
+                Stamina -= SprintCost * Time.deltaTime;
+                if (Stamina < 0) Stamina = 0;
+                StaminaBar.fillAmount = Stamina / MaxStamina;
+
+                if (recharge != null) StopCoroutine(recharge);
+                recharge = StartCoroutine(RechargeStamina());
             }
         }
-        //_uiManager.UpdateStamina(totalStamina, staminaDepleted);
-    }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        
-        //GameObject.FindGameObjectsWithTag("Obstruction");
+
+
+
 
     }
 
-    public void Hiding()
+    private IEnumerator RechargeStamina()
     {
-        
-    }
+        yield return new WaitForSeconds(2f);
 
-    private void KeyPickup()
-    {
-        
+        while (Stamina < MaxStamina)
+        {
+            Stamina += rechargeRate / 10f;
+            if (Stamina > MaxStamina) Stamina = MaxStamina;
+            StaminaBar.fillAmount = Stamina / MaxStamina;
+            yield return new WaitForSeconds(.1f);
+        }
+
+
+        /*public void OnTriggerEnter(Collider other)
+        {
+
+            //GameObject.FindGameObjectsWithTag("Obstruction");
+
+        }
+
+        public void Hiding()
+        {
+
+        }
+
+        private void KeyPickup()
+        {
+
+        }*/
     }
 }
