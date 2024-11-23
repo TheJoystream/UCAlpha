@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,13 +9,13 @@ public class FieldOfView : MonoBehaviour
 {
     GameObject player;
 
+    //Detection
     public float radius;
     [Range(0, 360)]
     public float angle;
-
     public GameObject playerRef;
 
-
+    //LayerMasks
     public LayerMask targetMask;
     public LayerMask obstructionMask;
 
@@ -23,14 +24,21 @@ public class FieldOfView : MonoBehaviour
 
     public NavMeshAgent enemy;
     public Transform playerpos;
+
+    //Audio
+    public AudioSource spottedAudio;
+    public AudioClip playerSpotted;
     // Start is called before the first frame update
     void Start()
     {
+        //Sets reference to Player
         playerRef = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(FOVRoutine());
+        spottedAudio = GetComponent<AudioSource>();
 
     }
 
+    //
     private IEnumerator FOVRoutine()
     {
         float delay = 0.2f;
@@ -50,6 +58,7 @@ public class FieldOfView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Range check for player
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
         if (rangeChecks.Length != 0)
@@ -70,25 +79,23 @@ public class FieldOfView : MonoBehaviour
                 {
                 Chase();
             }
+
         }
     }
 
+    
+    //Enemy chases player
     public void Chase()
     {
         enemy.SetDestination(playerpos.position);
-        //if (canSeePlayer == true)
-       // {
-            //transform.position = Vector3.MoveTowards(transform.position, target.position, 5f).normalized; transform.forward = target.forward;
-       // }
-
-        //if (canSeePlayer == false)
-        //{
-            //FieldOfViewCheck();
-       // }
+       // spottedAudio.PlayOneShot(playerSpotted);
+        
     }
 
-    private Vector3 GetPosition()
+    /*private Vector3 GetPosition()
     {
         return player.transform.position;
-    }
+    }*/
+   
+
 }

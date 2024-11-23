@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class Character : MonoBehaviour
     public bool isRunning = false;
     public float movespeed = 6f;
     public bool isHiding;
+    private bool isDead;
 
     public float rechargeRate;
     private Coroutine recharge;
@@ -23,8 +25,7 @@ public class Character : MonoBehaviour
     public float Stamina, MaxStamina;
     public float SprintCost;
 
-
-
+    public GameManagerScript gameManager;
 
 
     //Audio
@@ -37,6 +38,7 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         playerAudio = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody>();
 
@@ -54,8 +56,6 @@ public class Character : MonoBehaviour
 
         if (Input.anyKeyDown)
             isMoving = true;
-
-
 
         if (Input.GetKeyDown(KeyCode.LeftShift) & isMoving == true)
         {
@@ -82,7 +82,6 @@ public class Character : MonoBehaviour
             movespeed = 6.0f;
         }
         {
-            // characterController.Move(move * Time.deltaTime * speed * 2);
             if (isRunning == true)
             {
 
@@ -93,6 +92,7 @@ public class Character : MonoBehaviour
                 if (recharge != null) StopCoroutine(recharge);
                 recharge = StartCoroutine(RechargeStamina());
             }
+            
         }
 
 
@@ -114,21 +114,17 @@ public class Character : MonoBehaviour
         }
 
 
-        /*public void OnTriggerEnter(Collider other)
+        
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject other = collision.gameObject;
+        if(other.CompareTag("Enemy") && !isDead)
         {
-
-            //GameObject.FindGameObjectsWithTag("Obstruction");
-
+            isDead = true;
+            gameManager.GameOver();
+            Debug.Log("You got caught!");
+            Destroy(this.gameObject);
         }
-
-        public void Hiding()
-        {
-
-        }
-
-        private void KeyPickup()
-        {
-
-        }*/
     }
 }
