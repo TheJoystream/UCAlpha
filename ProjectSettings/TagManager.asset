@@ -9,6 +9,7 @@ TagManager:
   - Obstruction
   - Enemy
   - Waypoint
+  - music
   layers:
   - Default
   - TransparentFX
