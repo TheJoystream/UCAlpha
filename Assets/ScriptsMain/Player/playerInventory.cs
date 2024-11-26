@@ -7,10 +7,10 @@ using UnityEngine.Events;
 public class playerInventory : MonoBehaviour
 {
     public bool hasKey;
-    public float hasKeys;
+    //public float hasKeys;
     public int keysAmount { get; private set; }
     public int NumberOfRocks { get; private set; }
-    public int NumberOfKeys { get; private set; }
+    public int NumberOfKeys = 0;
 
     public AudioSource keyAudio;
     public AudioClip keyAudioClip;
@@ -46,7 +46,7 @@ public class playerInventory : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(NumberOfKeys >= 0)
+        if(keysAmount ==1)
         {
             hasKey = true;
             

@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class KeyScript : MonoBehaviour
 {
-    public GameObject doorCollider;
+    public playerInventory playerInventory;
 
     // Start is called before the first frame update
     void Start()
     {
-        doorCollider.SetActive(false);
+        
     }
 
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player" && playerInventory.hasKey ==true)
         {
-            doorCollider.SetActive(true);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

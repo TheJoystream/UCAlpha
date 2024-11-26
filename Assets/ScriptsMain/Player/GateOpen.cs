@@ -6,10 +6,14 @@ using UnityEngine;
 public class GateOpen : MonoBehaviour
 {
     public bool locked;
+    public playerInventory inventory;
+    public GameObject gateCollider;
     // Start is called before the first frame update
     void Start()
     {
         locked = true;
+        
+        
     }
 
     // Update is called once per frame
@@ -19,9 +23,11 @@ public class GateOpen : MonoBehaviour
     }
         private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("endkey"))
+        if(other.gameObject.tag == "Player" && inventory.hasKey == true)
         {
             locked = false;
+            gameObject.SetActive(false);
+
 
             
         }

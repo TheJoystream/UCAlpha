@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
 {
     private Rigidbody playerRb;
     private CharacterController characterController;
-    public bool isMoving;
+    public bool isMoving = false;
     public bool isRunning = false;
     public float movespeed = 6f;
     public bool isHiding;
@@ -57,6 +57,7 @@ public class Character : MonoBehaviour
         if (Input.anyKeyDown)
             isMoving = true;
 
+
         if (Input.GetKeyDown(KeyCode.LeftShift) & isMoving == true)
         {
             characterController.Move(move * Time.deltaTime * movespeed * 2);
@@ -92,6 +93,7 @@ public class Character : MonoBehaviour
                 if (recharge != null) StopCoroutine(recharge);
                 recharge = StartCoroutine(RechargeStamina());
             }
+            
             
         }
 
