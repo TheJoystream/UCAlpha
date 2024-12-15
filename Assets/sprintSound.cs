@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class footsteps : MonoBehaviour
+public class sprintSound : MonoBehaviour
 {
-    public AudioSource footstepSound;
+    public AudioSource sprintingSound;
 
     public GameObject player;
 
@@ -14,9 +14,7 @@ public class footsteps : MonoBehaviour
         bool isMoving = Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0;
         bool isSprinting = Input.GetKey(KeyCode.LeftShift);
 
-        footstepSound.enabled = isMoving && !isSprinting;
-        
+        sprintingSound.enabled = isMoving && isSprinting;
+
     }
 }
-
-

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -16,14 +15,12 @@ public class Character : MonoBehaviour
     public bool isHiding;
     private bool isDead;
 
-    public float rechargeRate;
-    private Coroutine recharge;
-
-
-
+    //Stamina
     public Image StaminaBar;
     public float Stamina, MaxStamina;
     public float SprintCost;
+    public float rechargeRate;
+    private Coroutine recharge;
 
     public GameManagerScript gameManager;
 
