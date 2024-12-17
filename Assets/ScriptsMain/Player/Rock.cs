@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour
 {
+    public float speed;
+
+
+
+
+    private void Update()
+    {
+        transform.position += transform.forward * speed * Time.deltaTime;
+    }
     private void OnTriggerEnter(Collider other)
     {
         playerInventory playerInventory = other.GetComponent<playerInventory>();

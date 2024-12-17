@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -21,6 +22,11 @@ public class Character : MonoBehaviour
     public float SprintCost;
     public float rechargeRate;
     private Coroutine recharge;
+
+    public GameObject rockPrefab;
+
+     public float rockSpeed;
+   
 
     public GameManagerScript gameManager;
 
@@ -73,11 +79,12 @@ public class Character : MonoBehaviour
         }
         if (isRunning == false)
         {
-            movespeed = 6.0f;
+            movespeed = 10.0f;
         }
         if(Stamina == 0)
         {
             movespeed = 6.0f;
+            isRunning = false;
         }
         {
             if (isRunning == true)
@@ -91,6 +98,16 @@ public class Character : MonoBehaviour
                 recharge = StartCoroutine(RechargeStamina());
             }
             
+            /*if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Instantiate(rockPrefab, transform.position + transform.forward, transform.rotation);
+                transform.position += transform.forward * rockSpeed * Time.deltaTime;
+            }*/
+
+            Ray rayfromCamera = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane = new Plane(Vector3.up, transform.position);
+            groundPlane.Raycast(rayfromCamera, out float distanceFromCamera);
+            Vector3 cursorPosition = rayfromCamera.GetPoint(distanceFromCamera);
             
         }
 

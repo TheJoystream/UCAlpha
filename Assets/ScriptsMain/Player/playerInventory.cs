@@ -11,6 +11,7 @@ public class playerInventory : MonoBehaviour
     public int keysAmount { get; private set; }
     public int NumberOfRocks { get; private set; }
     public int NumberOfKeys = 0;
+    //public int rocksAmount = 0;
 
     public AudioSource keyAudio;
     public AudioClip keyAudioClip;

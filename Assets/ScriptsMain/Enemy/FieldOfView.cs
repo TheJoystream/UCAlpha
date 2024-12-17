@@ -14,6 +14,7 @@ public class FieldOfView : MonoBehaviour
     [Range(0, 360)]
     public float angle;
     public GameObject playerRef;
+    public Light fovCone;
 
     //LayerMasks
     public LayerMask targetMask;
@@ -28,6 +29,11 @@ public class FieldOfView : MonoBehaviour
     //Audio
     public AudioSource spottedAudio;
     public AudioClip playerSpotted;
+
+    MeshRenderer meshRenderer;
+    Color origColor;
+    float flashTime = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +42,8 @@ public class FieldOfView : MonoBehaviour
         StartCoroutine(FOVRoutine());
         spottedAudio = GetComponent<AudioSource>();
 
+        meshRenderer = GetComponent<MeshRenderer>();
+        origColor = meshRenderer.material.color;
     }
 
     //
@@ -58,6 +66,8 @@ public class FieldOfView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        fovCone.color = Color.green;
         //Range check for player
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
@@ -76,8 +86,15 @@ public class FieldOfView : MonoBehaviour
 
             }
             if (canSeePlayer == true)
+            {
+                FlashStart();
+            }
+
+            if (canSeePlayer == true)
                 {
+                fovCone.color = Color.red;
                 Chase();
+                
             }
 
         }
@@ -88,13 +105,28 @@ public class FieldOfView : MonoBehaviour
     public void Chase()
     {
         enemy.SetDestination(playerpos.position);
-       // spottedAudio.PlayOneShot(playerSpotted);
+       //spottedAudio.PlayOneShot(playerSpotted);
         
     }
 
-    /*private Vector3 GetPosition()
+    void FlashStart()
     {
-        return player.transform.position;
+        meshRenderer.material.color = Color.red;
+        Invoke("FlashStop", flashTime);
+    }
+
+    void FlashStop()
+    {
+        meshRenderer.material.color = origColor;
+    }
+
+
+    /*private void ChaseSound()
+    {
+        if (canSeePlayer == true)
+                {
+            spottedAudio.PlayOneShot(playerSpotted);
+        }
     }*/
    
 
