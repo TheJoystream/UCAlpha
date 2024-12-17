@@ -30,10 +30,6 @@ public class FieldOfView : MonoBehaviour
     public AudioSource spottedAudio;
     public AudioClip playerSpotted;
 
-    MeshRenderer meshRenderer;
-    Color origColor;
-    float flashTime = 1f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -41,9 +37,6 @@ public class FieldOfView : MonoBehaviour
         playerRef = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(FOVRoutine());
         spottedAudio = GetComponent<AudioSource>();
-
-        meshRenderer = GetComponent<MeshRenderer>();
-        origColor = meshRenderer.material.color;
     }
 
     //
@@ -85,10 +78,6 @@ public class FieldOfView : MonoBehaviour
                     canSeePlayer = false;
 
             }
-            if (canSeePlayer == true)
-            {
-                FlashStart();
-            }
 
             if (canSeePlayer == true)
                 {
@@ -107,17 +96,6 @@ public class FieldOfView : MonoBehaviour
         enemy.SetDestination(playerpos.position);
        //spottedAudio.PlayOneShot(playerSpotted);
         
-    }
-
-    void FlashStart()
-    {
-        meshRenderer.material.color = Color.red;
-        Invoke("FlashStop", flashTime);
-    }
-
-    void FlashStop()
-    {
-        meshRenderer.material.color = origColor;
     }
 
 
