@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
+    //Character attributes
     private Rigidbody playerRb;
     private CharacterController characterController;
     public bool isMoving = false;
@@ -22,10 +23,6 @@ public class Character : MonoBehaviour
     public float SprintCost;
     public float rechargeRate;
     private Coroutine recharge;
-
-    public GameObject rockPrefab;
-
-     public float rockSpeed;
    
 
     public GameManagerScript gameManager;
@@ -47,7 +44,7 @@ public class Character : MonoBehaviour
 
         characterController = GetComponent<CharacterController>();
 
-        // slider = (Slider)GetComponent(typeof(Slider));
+        
     }
 
     // Update is called once per frame
@@ -69,7 +66,7 @@ public class Character : MonoBehaviour
         }
         if (isRunning == true)
         {
-            movespeed = 12.0f;
+            movespeed = 15.0f;
             if (recharge != null) StopCoroutine(recharge);
             recharge = StartCoroutine(RechargeStamina());
         }
@@ -83,7 +80,7 @@ public class Character : MonoBehaviour
         }
         if(Stamina == 0)
         {
-            movespeed = 6.0f;
+            movespeed = 10.0f;
             isRunning = false;
         }
         {
@@ -97,24 +94,7 @@ public class Character : MonoBehaviour
                 if (recharge != null) StopCoroutine(recharge);
                 recharge = StartCoroutine(RechargeStamina());
             }
-            
-            /*if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                Instantiate(rockPrefab, transform.position + transform.forward, transform.rotation);
-                transform.position += transform.forward * rockSpeed * Time.deltaTime;
-            }*/
-
-            Ray rayfromCamera = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Plane groundPlane = new Plane(Vector3.up, transform.position);
-            groundPlane.Raycast(rayfromCamera, out float distanceFromCamera);
-            Vector3 cursorPosition = rayfromCamera.GetPoint(distanceFromCamera);
-            
         }
-
-
-
-
-
     }
 
     private IEnumerator RechargeStamina()
@@ -127,10 +107,7 @@ public class Character : MonoBehaviour
             if (Stamina > MaxStamina) Stamina = MaxStamina;
             StaminaBar.fillAmount = Stamina / MaxStamina;
             yield return new WaitForSeconds(.1f);
-        }
-
-
-        
+        }       
     }
     private void OnCollisionEnter(Collision collision)
     {
