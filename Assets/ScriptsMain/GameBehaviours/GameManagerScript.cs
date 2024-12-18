@@ -18,6 +18,7 @@ public class GameManagerScript : MonoBehaviour
         
     }
 
+    
     public void GameOver()
     {
         gameOverUI.SetActive(true);
@@ -36,5 +37,10 @@ public class GameManagerScript : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene("GameScreen");
+    }
+
+    public void PlayLevel2()
+    {
+        SceneManager.LoadScene("Level 2");
     }
 }

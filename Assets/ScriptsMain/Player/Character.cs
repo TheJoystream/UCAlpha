@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
     private CharacterController characterController;
     public bool isMoving = false;
     public bool isRunning = false;
-    public float movespeed = 6f;
+    public float movespeed = 10f;
     public bool isHiding;
     private bool isDead;
 
@@ -52,7 +52,7 @@ public class Character : MonoBehaviour
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        characterController.Move(move * Time.deltaTime * movespeed);
+        characterController.Move(move * movespeed * Time.deltaTime);
 
         if (Input.anyKeyDown)
             isMoving = true;
@@ -60,13 +60,13 @@ public class Character : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) & isMoving == true)
         {
-            characterController.Move(move * Time.deltaTime * movespeed * 2);
+            characterController.Move(move * movespeed *2 *Time.deltaTime);
             isRunning = true;
             Debug.Log("Sprinting");
         }
         if (isRunning == true)
         {
-            movespeed = 15.0f;
+            movespeed = 20.0f;
             if (recharge != null) StopCoroutine(recharge);
             recharge = StartCoroutine(RechargeStamina());
         }

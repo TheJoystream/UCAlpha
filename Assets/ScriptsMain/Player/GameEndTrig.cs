@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameEndTrig : MonoBehaviour
 {
+    public GameObject GameMananager;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +20,9 @@ public class GameEndTrig : MonoBehaviour
 
     private void OnTriggerEnter(Collider c)
     {
-        if (c.tag == "Player")
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-        }
+       
 
     }
+
+    
 }
