@@ -35,6 +35,10 @@ public class MusicPlayer:MonoBehaviour
             // Stop the music
             StopMusic();
         }
+        if (SceneManager.GetActiveScene().name == "Level 2")
+            {
+            StopMusic();
+        }
     }
 
     private void StopMusic()

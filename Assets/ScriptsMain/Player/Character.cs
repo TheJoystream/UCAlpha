@@ -33,6 +33,8 @@ public class Character : MonoBehaviour
     public AudioClip keyCollect;
     public AudioClip rockCollect;
 
+    public Animator anim;
+
 
 
     // Start is called before the first frame update
@@ -54,15 +56,25 @@ public class Character : MonoBehaviour
 
         characterController.Move(move * movespeed * Time.deltaTime);
 
+        float verticalAxis = Input.GetAxis("Vertical");
+        float horizontalAxis = Input.GetAxis("Horizontal");
+
         if (Input.anyKeyDown)
             isMoving = true;
+        this.anim.SetFloat("vertical", verticalAxis);
+        this.anim.SetFloat("horizontal", horizontalAxis);
 
 
         if (Input.GetKeyDown(KeyCode.LeftShift) & isMoving == true)
         {
             characterController.Move(move * movespeed *2 *Time.deltaTime);
             isRunning = true;
-            Debug.Log("Sprinting");
+            //Debug.Log("Sprinting");
+            anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            //this.anim.SetBool("isRunning", false);
         }
         if (isRunning == true)
         {
@@ -73,6 +85,7 @@ public class Character : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift) & isMoving == true)
         {
             isRunning = false;
+            anim.SetBool("isRunning", false);
         }
         if (isRunning == false)
         {
